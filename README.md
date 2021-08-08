@@ -1,4 +1,9 @@
 # Chào Anh Em Đến Với Api Web
+
+*Note:*
+- Xem hướng dẫn tại : 
 ```
-    Đang cập nhật ....
+doc\huongdan.md
 ```
+
+- Đang cập nhật ....
