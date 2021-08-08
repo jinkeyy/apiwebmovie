@@ -4,6 +4,11 @@
     ```
         npm i 
     ```
+    và
+
+    ```
+        npm i mongoose
+    ```
 - Kiểm tra file config.json tại thư mục:
     ```
     src/config.json
