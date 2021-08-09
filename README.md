@@ -2,8 +2,11 @@
 
 *Note:*
 - Xem hướng dẫn tại : 
-```
-doc\huongdan.md
-```
+    ```
+    doc\huongdan.md
+    ```
+- OpenApi
+    ```
+        <host>/doc-api
+    ```
 
-- Đang cập nhật ....
