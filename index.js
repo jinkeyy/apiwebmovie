@@ -47,11 +47,6 @@ const options = {
             version:"1.0.0",
             description:"Api we movie :)"
         },
-        servers:[
-            {
-                url: process.env.NODE_ENV  || host
-            }
-        ],
     },
     apis:["./src/routes/user/route*.js", "./src/routes/movie/route*.js"]
     
