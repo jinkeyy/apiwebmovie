@@ -49,7 +49,7 @@ const options = {
         },
         servers:[
             {
-                url: process.env.HEROKU_APP_NAME || host
+                url: process.env.NODE_ENV  || host
             }
         ],
     },
