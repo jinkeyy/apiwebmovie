@@ -40,6 +40,7 @@ const loginController = require("../controllers/controller.login")
  * /login:
  *      post:
  *          summary: trả về thông tin tài khoản nếu đăng nhập thành công
+ *          tags: [User]
  *          requestBody:
  *              required: true
  *              content:
