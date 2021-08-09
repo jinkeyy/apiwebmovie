@@ -11,7 +11,7 @@ const swaggerJsDoc = require("swagger-jsdoc")
 mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 
 const port = config.App.localhost
-app.listen(port,()=>{
+app.listen(process.env.PORT || port,()=>{
     console.log("Cổng "+port)
 })
 const login = require("./src/routes/user/route.login")
