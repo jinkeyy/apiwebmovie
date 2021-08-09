@@ -1,0 +1,8 @@
+{
+    "MongoDb":{
+        "connectionString":"mongodb://localhost/movie_db"
+    },
+    "App":{
+        "localhost": 3500
+    }
+}
