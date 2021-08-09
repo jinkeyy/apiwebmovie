@@ -14,11 +14,17 @@ const port = config.App.localhost
 app.listen(port,()=>{
     console.log("Cổng "+port)
 })
-const login = require("./src/routes/route.login")
-const register = require("./src/routes/route.register")
+const login = require("./src/routes/user/route.login")
+const register = require("./src/routes/user/route.register")
+const createmovie = require("./src/routes/movie/route.createMovie")
+const getallmovie = require("./src/routes/movie/route.getAllMovie")
+
 //// Thềm route vào dưới đây hic
 app.use(login)
 app.use(register)
+app.use(createmovie)
+app.use(getallmovie)
+
 const host = "http://localhost:"+port
 const options = {
     definition:{
@@ -34,7 +40,8 @@ const options = {
             }
         ],
     },
-    apis:["./src/routes/route*.js"]
+    apis:["./src/routes/user/route*.js", "./src/routes/movie/route*.js"]
+    
 }
 const specs = swaggerJsDoc(options)
 app.use("/doc-api",swaggerUI.serve,swaggerUI.setup(specs))

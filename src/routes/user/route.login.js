@@ -6,7 +6,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({ type: 'application/json' }))
 app.use(bodyParser.raw())
 
-const loginController = require("../controllers/controller.login")
+const loginController = require("../../controllers/controller.login.js")
 
 /**
  * @swagger
