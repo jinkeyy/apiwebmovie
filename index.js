@@ -5,10 +5,21 @@ const bcrypt = require("bcryptjs")
 const mongoose = require('mongoose');
 const config = require('./src/config.json');
 
+const url = require('url');
 const swaggerUI = require("swagger-ui-express")
 const swaggerJsDoc = require("swagger-jsdoc")
 
 mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
+
+
+//fix cros
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
 
 const port = config.App.localhost
 app.listen(process.env.PORT || port,()=>{
@@ -19,6 +30,7 @@ const register = require("./src/routes/user/route.register")
 const createmovie = require("./src/routes/movie/route.createMovie")
 const getallmovie = require("./src/routes/movie/route.getAllMovie")
 
+
 //// Thềm route vào dưới đây hic
 app.use(login)
 app.use(register)
@@ -26,6 +38,7 @@ app.use(createmovie)
 app.use(getallmovie)
 
 const host = "http://localhost:"+port
+
 const options = {
     definition:{
         openapi: "3.0.0",
@@ -36,7 +49,7 @@ const options = {
         },
         servers:[
             {
-                url: host
+                url: process.env.HEROKU_APP_NAME || host
             }
         ],
     },
@@ -44,4 +57,4 @@ const options = {
     
 }
 const specs = swaggerJsDoc(options)
-app.use("/doc-api",swaggerUI.serve,swaggerUI.setup(specs))
+app.use("/",swaggerUI.serve,swaggerUI.setup(specs))

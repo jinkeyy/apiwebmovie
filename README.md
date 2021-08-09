@@ -7,6 +7,6 @@
     ```
 - OpenApi
     ```
-        <host>/doc-api
+        <host>/
     ```
 
