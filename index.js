@@ -29,6 +29,7 @@ const login = require("./src/routes/user/route.login")
 const register = require("./src/routes/user/route.register")
 const createmovie = require("./src/routes/movie/route.createMovie")
 const getallmovie = require("./src/routes/movie/route.getAllMovie")
+const getmovie = require("./src/routes/movie/route.getMovie") 
 
 
 //// Thềm route vào dưới đây hic
@@ -36,6 +37,7 @@ app.use(login)
 app.use(register)
 app.use(createmovie)
 app.use(getallmovie)
+app.use(getmovie)
 
 const host = "http://localhost:"+port
 

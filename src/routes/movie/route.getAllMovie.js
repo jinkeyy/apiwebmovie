@@ -13,6 +13,7 @@ const getAllMovieController = require("../../controllers/controller.getAllMovie.
  *      get:
  *          summary: Lấy về toàn bộ phim
  *          tags: [Movie]
+ * 
  *          responses:
  *              200:
  *                  description: Thông báo thành công 
