@@ -11,3 +11,4 @@ getAllMovieController = async (reqs,res)=>{
         }
 }
 module.exports = getAllMovieController
+//hihihihihi
