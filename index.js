@@ -34,14 +34,6 @@ const updatemovie = require("./src/routes/movie/route.updateMovie")
 const deletemovie = require("./src/routes/movie/route.deleteMovie")
 const getAllUser = require("./src/routes/user/route.user")
 
-
-//// Thềm route vào dưới đây hic
-// app.use(login)
-// app.use(register)
-// app.use(createmovie)
-// app.use(getallmovie)
-// app.use(getmovie)
-
 //// Thềm route vào dưới đây hic
 app.use(login,register,getallmovie,createmovie, getmovie, updatemovie, deletemovie)
 getAllUser(app)
