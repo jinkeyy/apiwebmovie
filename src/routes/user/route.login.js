@@ -34,6 +34,10 @@ const loginController = require("../../controllers/controller.login.js")
  *                  rule:
  *                      type: string
  *                      description: quyền 
+ *              example:
+ *                  id: 61113c3c6459261dfcfa2d13
+ *                  username: luna
+ *                  email: admin@gmail.com
  */
 /**
  * @swagger

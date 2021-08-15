@@ -10,16 +10,21 @@ const getMovieController = require("../../controllers/controller.getMovie.js")
 
 /**
  * @swagger
- * /getmovie:
+ * /getmovie/{movieId}:
  *      get:
  *          summary: Lấy về một phim 
  *          tags: [Movie] 
- *          parameters['id'] : 
- *              description: 'movie id'            
+ *          parameters:
+ *               - in: path
+ *                 name: movieId
+ *                 schema:
+ *                   type: string
+ *                   required: true
+ *                   description: id của movie            
  *                                 
  *          responses:
  *              200:
- *                  description: Thông báo đăng kí thành công 
+ *                  description: Thông báo lấy dữ liệu thành công 
  *                  content:
  *                      application/json:
  *                          schema:
@@ -27,7 +32,7 @@ const getMovieController = require("../../controllers/controller.getMovie.js")
  *                            item:
  *                              $ref:"#/components/schemas/Movie"
  */
-app.get("/getmovie", (reqs, res) => {
+ app.get("/getmovie/:movieId", (reqs, res) => {
     getMovieController(reqs, res)
 })
 module.exports = app;

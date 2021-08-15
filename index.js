@@ -30,14 +30,22 @@ const register = require("./src/routes/user/route.register")
 const createmovie = require("./src/routes/movie/route.createMovie")
 const getallmovie = require("./src/routes/movie/route.getAllMovie")
 const getmovie = require("./src/routes/movie/route.getMovie") 
+const updatemovie = require("./src/routes/movie/route.updateMovie")
+const deletemovie = require("./src/routes/movie/route.deleteMovie")
+const getAllUser = require("./src/routes/user/route.user")
 
 
 //// Thềm route vào dưới đây hic
-app.use(login)
-app.use(register)
-app.use(createmovie)
-app.use(getallmovie)
-app.use(getmovie)
+// app.use(login)
+// app.use(register)
+// app.use(createmovie)
+// app.use(getallmovie)
+// app.use(getmovie)
+
+//// Thềm route vào dưới đây hic
+app.use(login,register,getallmovie,createmovie, getmovie, updatemovie, deletemovie)
+getAllUser(app)
+
 
 const host = "http://localhost:"+port
 
@@ -55,3 +63,4 @@ const options = {
 }
 const specs = swaggerJsDoc(options)
 app.use("/",swaggerUI.serve,swaggerUI.setup(specs))
+
