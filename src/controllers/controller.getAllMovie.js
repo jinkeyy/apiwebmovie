@@ -5,9 +5,13 @@ const app = express()
 getAllMovieController = async (reqs,res)=>{
         try{
             const movieList =  await Movie.find();
-            res.send(movieList);
+            if(movieList.length == 0){
+                res.status(204).send("không có bản ghi nào")
+            } else{
+                res.json(movieList);
+            }
         }catch(err){
-            res.status(400).send(err);
+            res.status(500).send(err);
         }
 }
 module.exports = getAllMovieController

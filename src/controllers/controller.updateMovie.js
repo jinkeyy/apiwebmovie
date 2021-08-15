@@ -2,7 +2,7 @@ const Movie = require("../models/models.movie.js")
 const express = require("express")
 const app = express()
 
-createMovieController = async (reqs,res)=>{
+updateMovieController = async (reqs,res)=>{
     if(reqs.body.moviename && reqs.body.movielink && reqs.body.imagelink){
         const newMovie = new Movie();
         newMovie.moviename = reqs.body.moviename
@@ -14,8 +14,13 @@ createMovieController = async (reqs,res)=>{
         newMovie.national = reqs.body.national
         newMovie.typemovie = reqs.body.movie
         try{
-            const Movie = await newMovie.save()
-            res.status(201).send({"message":"Thêm phim mới thành công"});
+             if(await Movie.findOne({'_id': reqs.params.movieId}) == null){
+                res.status(400).send("Phim không tồn tại")
+            } else{
+                const movie = await Movie.findByIdAndUpdate(reqs.params.movieId, newMovie)
+            res.status(201).send({"message":"SỬa phim thành công thành công"});
+            } 
+            
         }catch(err){
             res.status(500).send(err);
         }
