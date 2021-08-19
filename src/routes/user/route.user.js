@@ -4,6 +4,8 @@ module.exports = function (app) {
  * @swagger
  * /getuser:
  *      get:
+ *          security:
+ *              - bearerAuth: []
  *          summary: Lấy về toàn bộ user
  *          tags: [User]
  *          responses:
@@ -16,6 +18,7 @@ module.exports = function (app) {
  *                            item:
  *                              $ref:"#/components/schemas/User"
  */
+
     app.route('/getuser').get(userController.getAllUser)
 
     /**
@@ -45,7 +48,7 @@ module.exports = function (app) {
     /**
 * @swagger
 * /deleteuser/{userId}:
-*      delete:
+*      put:
 *          summary: xóa user theo id
 *          tags: [User]
 *          parameters:
@@ -77,5 +80,6 @@ module.exports = function (app) {
 *                                   type: string
 *                                   description: error
 */
-    app.route('/deleteuser/:userId').delete(userController.deleteUser)
+    app.route('/deleteuser/:userId').put(userController.deleteUser)
+    app.route('/updateuser/:userId').put(userController.updateUser)
 }

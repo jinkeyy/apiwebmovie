@@ -3,6 +3,6 @@
         "connectionString":"mongodb+srv://Luna:66@cluster0.vtfbo.mongodb.net/movie_db?retryWrites=true&w=majority"
     },
     "App":{
-        "localhost": "3501"
+        "localhost": "3500"
     }
 }

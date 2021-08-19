@@ -24,7 +24,6 @@ const registerController = require("../../controllers/controller.register.js")
  *                              -password
  *                              -phone
  *                              -username
- *                              -ruler
  *                          properties:
  *                              email:
  *                                  type: string
@@ -34,8 +33,10 @@ const registerController = require("../../controllers/controller.register.js")
  *                                  type: string
  *                              phone:
  *                                  type: string
- *                              ruler:
- *                                  type: string
+ *                              avatar:
+ *                                  schema:
+ *                                      type: string
+ *                                      format: binary
  *          responses:
  *              200:
  *                  description: Thông báo đăng kí thành công 

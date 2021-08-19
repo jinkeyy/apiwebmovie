@@ -4,7 +4,7 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcryptjs")
 const mongoose = require('mongoose');
 const config = require('./src/config.json');
-
+// const fsRoutes = require("fs-routes")
 const url = require('url');
 const swaggerUI = require("swagger-ui-express")
 const swaggerJsDoc = require("swagger-jsdoc")
@@ -18,8 +18,12 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
-
+// console.log(fsRoutes)
+// const output = fsRoutes.default('src/routes/');
+// for(let i of output){
+//     console.log(i)
+//     require(i.path)(app)
+// }
 
 const port = config.App.localhost
 app.listen(process.env.PORT || port,()=>{
@@ -43,15 +47,27 @@ const host = "http://localhost:"+port
 
 const options = {
     definition:{
-        openapi: "3.0.0",
+        openapi: "3.0.1",
         info:{
             title:"Movie Api",
             version:"1.0.0",
-            description:"Api we movie :)"
+            description:"Api we movie :)",
+            contact: {
+                "name": "Github",
+                "url": "https://github.com/jinkeyy/apiwebmovie",
+            },
+
         },
+        servers:[
+            {
+                url:'http://'
+            },
+            {
+                url:'https://'
+            }
+        ]
     },
-    apis:["./src/routes/user/route*.js", "./src/routes/movie/route*.js"]
-    
+    apis:["./src/routes/editor.*.js","./src/routes/user/route*.js", "./src/routes/movie/route*.js"]
 }
 const specs = swaggerJsDoc(options)
 app.use("/",swaggerUI.serve,swaggerUI.setup(specs))
