@@ -51,7 +51,7 @@ const options = {
         info:{
             title:"Movie Api",
             version:"1.0.0",
-            description:"Api we movie :)",
+            description:"*<strong>Lưu ý:</strong><br>- Nếu vào link deloy xin chọn server https để có thể test api xin cảm ơn <br>- Còn ở localhost chọn http",
             contact: {
                 "name": "Github",
                 "url": "https://github.com/jinkeyy/apiwebmovie",
