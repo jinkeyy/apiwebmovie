@@ -51,7 +51,7 @@ const options = {
         info:{
             title:"Movie Api",
             version:"1.0.0",
-            description:"*<strong>Lưu ý:</strong><br>- Nếu vào link deloy xin chọn server https để có thể test api xin cảm ơn <br>- Còn ở localhost chọn http",
+            description:"*<strong>Lưu ý:</strong><br>- Nếu vào link deloy xin chọn server https để có thể test api xin cảm ơn <br>- Còn ở localhost chọn http <br>- Đăng nhập để lấy token -> copy token vào ổ khóa -> chú ý quyền mỗi api để đăng nhâp tài khoản hợp lý <br> - Những api có có khóa là đã được tích hợp JWT<br>- Muốn call api có tích hợp JWT hãy gửi kèm theo header với giá trị token : <token bạn lấy được khi đăng nhập>",
             contact: {
                 "name": "Github",
                 "url": "https://github.com/jinkeyy/apiwebmovie",

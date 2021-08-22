@@ -1,6 +1,7 @@
 const User = require("../models/models.user")
 
-exports.getAllUser = async (reqs, res) => {
+
+exports.getAllUser = async(reqs, res) => {
     try {
         const userList = await User.find();
         res.json(userList);
@@ -32,12 +33,12 @@ exports.updateUser = async (reqs, res, next) => {
             if (!user) return res.status(400).json({ "notification": 'không tồn tại id ' + params.userId })
         })
     } catch (error) {
-        return res.status(400).json({ "notification": 'error'})
+        return res.status(400).json({ "notification": 'error' })
     }
     if (!body.email) return res.status(400).json({ "notification": "email không được để trống" })
     if (!body.username) return res.status(400).json({ "notification": "user không được để trống" })
     try {
-        await User.findByIdAndUpdate(params.userId,body,{new: true, runValidators: true})
+        await User.findByIdAndUpdate(params.userId, body, { new: true, runValidators: true })
         res.json({ "notification": "done" })
     } catch (error) {
         res.status(500).send(error)

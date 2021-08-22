@@ -1,12 +1,13 @@
 const userController = require("../../controllers/controller.user")
+const token = require("../../middleware/token")
 module.exports = function (app) {
     /**
  * @swagger
  * /getuser:
  *      get:
  *          security:
- *              - bearerAuth: []
- *          summary: Lấy về toàn bộ user
+ *              - ApiKeyAuth: []
+ *          summary: Lấy về toàn bộ user, chỉ role admin có quyền
  *          tags: [User]
  *          responses:
  *              200:
@@ -19,12 +20,14 @@ module.exports = function (app) {
  *                              $ref:"#/components/schemas/User"
  */
 
-    app.route('/getuser').get(userController.getAllUser)
+    app.route('/getuser').get(token.checkTokenAdmin, userController.getAllUser)
 
     /**
 * @swagger
 * /getuser/{userId}:
 *      get:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: Lấy về user theo id
 *          tags: [User]
 *          parameters:
@@ -44,12 +47,14 @@ module.exports = function (app) {
 *                            item:
 *                              $ref:"#/components/schemas/User"
 */
-    app.route('/getuser/:userId').get(userController.findUser)
+    app.route('/getuser/:userId').get(token.checkTokenGuest, userController.findUser)
     /**
 * @swagger
 * /deleteuser/{userId}:
 *      put:
-*          summary: xóa user theo id
+*          security:
+*              - ApiKeyAuth: []
+*          summary: xóa user theo id, chỉ role admin có quyền
 *          tags: [User]
 *          parameters:
 *               - in: path
@@ -80,48 +85,50 @@ module.exports = function (app) {
 *                                   type: string
 *                                   description: error
 */
-    app.route('/deleteuser/:userId').put(userController.deleteUser)
+    app.route('/deleteuser/:userId').put(token.checkTokenAdmin, userController.deleteUser)
 
-   /**
-* @swagger
-* /updateuser/{userId}:
-*      put:
-*          summary: cập nhật user theo id
-*          tags: [User]
-*          parameters:
-*               - in: path
-*                 name: userId
-*                 schema:
-*                   type: string
-*                   required: true
-*                   description: id của user
-*          requestBody:
-*              required: true
-*              content:
-*                  application/json:
-*                      schema:
-*                          type: object
-*          responses:
-*              200:
-*                  description: Thông báo xóa thành công 
-*                  content:
-*                      application/json:
-*                          schema:
-*                            type: object
-*                            properties:
-*                               notification:
-*                                   type: string
-*                                   description: done
-*              400:
-*                  description: Bad request. 
-*                  content:
-*                      application/json:
-*                          schema:
-*                            type: object
-*                            properties:
-*                               notification:
-*                                   type: string
-*                                   description: error
-*/
-    app.route('/updateuser/:userId').put(userController.updateUser)
+    /**
+ * @swagger
+ * /updateuser/{userId}:
+ *      put:
+ *          security:
+ *              - ApiKeyAuth: []
+ *          summary: cập nhật user theo id 
+ *          tags: [User]
+ *          parameters:
+ *               - in: path
+ *                 name: userId
+ *                 schema:
+ *                   type: string
+ *                   required: true
+ *                   description: id của user
+ *          requestBody:
+ *              required: true
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *          responses:
+ *              200:
+ *                  description: Thông báo xóa thành công 
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                            type: object
+ *                            properties:
+ *                               notification:
+ *                                   type: string
+ *                                   description: done
+ *              400:
+ *                  description: Bad request. 
+ *                  content:
+ *                      application/json:
+ *                          schema:
+ *                            type: object
+ *                            properties:
+ *                               notification:
+ *                                   type: string
+ *                                   description: error
+ */
+    app.route('/updateuser/:userId').put(token.checkTokenGuest, userController.updateUser)
 }

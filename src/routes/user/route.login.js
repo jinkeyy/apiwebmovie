@@ -70,6 +70,6 @@ const loginController = require("../../controllers/controller.login.js")
  *                              $ref:"#/components/schemas/User"
  */
 app.post("/login", (reqs, res) => {
-    loginController(reqs,res)
+    loginController(reqs, res)
 })
 module.exports = app;

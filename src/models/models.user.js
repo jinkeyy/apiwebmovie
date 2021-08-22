@@ -4,10 +4,13 @@ const userSchema = mongoose.Schema({
     email: { type: String, unique: true, },
     password: { required: true, type: String, select: false},
     phone: { type: String, },
-    rule: {
+    role: {
         type: String,
         enum: ['guest', 'admin'],
         default: 'guest',
+    }
+    ,avata:{
+        type: String
     }
 })
 
