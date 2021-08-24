@@ -4,7 +4,7 @@ const app = express()
 
 updateMovieController = async (reqs,res)=>{
     if(reqs.body.moviename && reqs.body.movielink && reqs.body.imagelink){
-        const newMovie = new Movie();
+        const newMovie = {};
         newMovie.moviename = reqs.body.moviename
         newMovie.movielink = reqs.body.movielink
         newMovie.imagelink = reqs.body.imagelink
@@ -12,13 +12,17 @@ updateMovieController = async (reqs,res)=>{
         newMovie.description = reqs.body.description
         newMovie.actors = reqs.body.actors
         newMovie.national = reqs.body.national
-        newMovie.typemovie = reqs.body.movie
+        newMovie.typemovie = reqs.body.typemovie
         try{
-             if(await Movie.findOne({'_id': reqs.params.movieId}) == null){
+           
+            if(await Movie.findOne({'_id': reqs.params.movieId}) == null){
                 res.status(400).send("Phim không tồn tại")
+                
             } else{
+                
+                
                 const movie = await Movie.findByIdAndUpdate(reqs.params.movieId, newMovie)
-            res.status(201).send({"message":"SỬa phim thành công thành công"});
+                res.status(201).send({"message":"Sửa phim thành công thành công"});
             } 
             
         }catch(err){
@@ -29,4 +33,4 @@ updateMovieController = async (reqs,res)=>{
     }
 
 }
-module.exports = createMovieController
+module.exports = updateMovieController

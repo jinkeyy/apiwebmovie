@@ -12,7 +12,7 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  * @swagger
  * /updatemovie/{movieId}:
  *      put:
- *          summary: Tạo phim mới 
+ *          summary: Update phim 
  *          tags: [Movie]
  *          parameters:
  *               - in: path
@@ -56,7 +56,7 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                              
  *          responses:
  *              200:
- *                  description: Thông báo đăng kí thành công 
+ *                  description: Sửa phim thành công 
  *                  content:
  *                      application/json:
  *                          schema:
