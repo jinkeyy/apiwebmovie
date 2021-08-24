@@ -12,7 +12,7 @@ createMovieController = async (reqs,res)=>{
         newMovie.description = reqs.body.description
         newMovie.actors = reqs.body.actors
         newMovie.national = reqs.body.national
-        newMovie.typemovie = reqs.body.movie
+        newMovie.typemovie = reqs.body.typemovie
         try{
             const Movie = await newMovie.save()
             res.status(201).send({"message":"Thêm phim mới thành công"});
