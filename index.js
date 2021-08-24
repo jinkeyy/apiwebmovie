@@ -38,9 +38,11 @@ const updatemovie = require("./src/routes/movie/route.updateMovie")
 const deletemovie = require("./src/routes/movie/route.deleteMovie")
 const getAllUser = require("./src/routes/user/route.user")
 const gettypemovie = require("./src/routes/movie/route.getTypeMovie")
+const filtermovie = require("./src/routes/movie/route.filterMovie")
+const getnationalmovie = require("./src/routes/movie/route.getNationalMovie")
 
 //// Thềm route vào dưới đây hic
-app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie)
+app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie)
 getAllUser(app)
 
 
