@@ -5,25 +5,21 @@ const bcrypt = require("bcryptjs")
 const mongoose = require('mongoose');
 const config = require('./src/config.json');
 // const fsRoutes = require("fs-routes")
+const fileUpload = require('express-fileupload')
 const url = require('url');
 const swaggerUI = require("swagger-ui-express")
 const swaggerJsDoc = require("swagger-jsdoc")
 
+app.use(express.static("public"));
 mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 
 
-//fix cros
+
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-// console.log(fsRoutes)
-// const output = fsRoutes.default('src/routes/');
-// for(let i of output){
-//     console.log(i)
-//     require(i.path)(app)
-// }
 
 const port = config.App.localhost
 app.listen(process.env.PORT || port, () => {
@@ -39,14 +35,15 @@ const deletemovie = require("./src/routes/movie/route.deleteMovie")
 const getAllUser = require("./src/routes/user/route.user")
 const gettypemovie = require("./src/routes/movie/route.getTypeMovie")
 const filtermovie = require("./src/routes/movie/route.filterMovie")
-const getnationalmovie = require("./src/routes/movie/route.getNationalMovie")
+const getnationalmovie = require("./src/routes/movie/route.getNationalMovie");
+const findMovie = require("./src/routes/movie/route.findMovie")
 
 //// Thềm route vào dưới đây hic
-app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie)
+app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie, findMovie)
 getAllUser(app)
 
+app.use(fileUpload())
 
-const host = "http://localhost:" + port
 
 const options = {
     definition: {
@@ -54,9 +51,9 @@ const options = {
         info: {
             title: "Movie Api",
             version: "1.0.0",
-            description: "*<strong>Lưu ý:</strong><br>- Nếu vào link deloy xin chọn server https để có thể test api xin cảm ơn <br>- Còn ở localhost chọn http <br>- Đăng nhập để lấy token -> copy token vào ổ khóa -> chú ý quyền mỗi api để đăng nhâp tài khoản hợp lý <br> - Những api có có khóa là đã được tích hợp JWT<br>- Muốn call api có tích hợp JWT hãy gửi kèm theo header với giá trị token : <token bạn lấy được khi đăng nhập>",
+            description: "*<strong>Lưu ý:</strong><br>- Nếu vào link deloy xin chọn servers https để có thể test api xin cảm ơn <br>- Còn ở localhost chọn http <br>- Đăng nhập để lấy token -> copy token vào ổ khóa -> chú ý quyền mỗi api để đăng nhâp tài khoản hợp lý <br> - Những api có có khóa là đã được tích hợp JWT<br>- Muốn call api có tích hợp JWT hãy gửi kèm theo header với giá trị token : <token bạn lấy được khi đăng nhập>",
             contact: {
-                "name": "Github",
+                "name": "Trello",
                 "url": "https://github.com/jinkeyy/apiwebmovie",
             },
 
@@ -74,4 +71,3 @@ const options = {
 }
 const specs = swaggerJsDoc(options)
 app.use("/", swaggerUI.serve, swaggerUI.setup(specs))
-

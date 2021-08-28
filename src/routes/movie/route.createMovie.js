@@ -17,7 +17,7 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *              required:
  *                  -moviename
  *                  -movielink
- *                  -movieimage
+ *                  -imagelink
  *              properties:
  *                  id:
  *                      type: string
@@ -56,18 +56,18 @@ const createMovieController = require("../../controllers/controller.createMovie.
  * @swagger
  * /createmovie:
  *      post:
- *          summary: Tạo phim mới 
  *          tags: [Movie]
+ *          summary: Tạo phim mới 
  *          requestBody:
  *              required: true
  *              content:
- *                  application/json:
+ *                  multipart/form-data:
  *                      schema:
  *                          type: object
  *                          required:
  *                              -moviename
  *                              -movielink
- *                              -imagelink
+ *                              -image
  *                          properties:
  *                              moviename:
  *                                  type: string
@@ -75,8 +75,9 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                                  type: string
  *                              movielink:
  *                                  type: string
- *                              imagelink:
+ *                              image:
  *                                  type: string
+ *                                  format: binary
  *                              description:
  *                                  type: string
  *                              national:
@@ -89,8 +90,6 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                                  type: array
  *                                  items: 
  *                                       type: string
- *
- *                              
  *          responses:
  *              200:
  *                  description: Thông báo đăng kí thành công 
@@ -101,6 +100,8 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                            item:
  *                              $ref:"#/components/schemas/Movie"
  */
+const fileUpload = require('express-fileupload')
+app.use(fileUpload())
 app.post("/createmovie", (reqs, res) => {
     createMovieController(reqs, res)
 })

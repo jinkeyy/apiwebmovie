@@ -9,9 +9,6 @@ const userSchema = mongoose.Schema({
         enum: ['guest', 'admin'],
         default: 'guest',
     }
-    ,avata:{
-        type: String
-    }
 })
 
 module.exports = mongoose.model('user', userSchema)

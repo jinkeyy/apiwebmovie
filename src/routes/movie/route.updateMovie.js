@@ -24,13 +24,12 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *          requestBody:
  *              required: true
  *              content:
- *                  application/json:
+ *                  multipart/form-data:
  *                      schema:
  *                          type: object
  *                          required:
  *                              -moviename
  *                              -movielink
- *                              -imagelink
  *                          properties:
  *                              moviename:
  *                                  type: string
@@ -38,8 +37,9 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                                  type: string
  *                              movielink:
  *                                  type: string
- *                              imagelink:
+ *                              image:
  *                                  type: string
+ *                                  format: binary
  *                              description:
  *                                  type: string
  *                              national:
@@ -51,9 +51,7 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                              actors:
  *                                  type: array
  *                                  items: 
- *                                       type: string
- *
- *                              
+ *                                       type: string 
  *          responses:
  *              200:
  *                  description: Sửa phim thành công 

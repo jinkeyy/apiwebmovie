@@ -3,11 +3,14 @@ const express = require("express")
 const app = express()
 
 updateMovieController = async (reqs,res)=>{
+    const updateImage = false
     if(reqs.body.moviename && reqs.body.movielink && reqs.body.imagelink){
         const newMovie = {};
         newMovie.moviename = reqs.body.moviename
         newMovie.movielink = reqs.body.movielink
-        newMovie.imagelink = reqs.body.imagelink
+        if(updateImage){
+            newMovie.imagelink = reqs.body.imagelink
+        }
         newMovie.trailerlink = reqs.body.trailerlink
         newMovie.description = reqs.body.description
         newMovie.actors = reqs.body.actors

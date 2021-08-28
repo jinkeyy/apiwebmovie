@@ -12,7 +12,7 @@ const deleteMovieController = require("../../controllers/controller.deleteMovie.
  * @swagger
  * /deletemovie/{movieId}:
  *      delete:
- *          summary: Lấy về một phim 
+ *          summary: xóa một phim 
  *          tags: [Movie] 
  *          parameters:
  *               - in: path
@@ -21,16 +21,14 @@ const deleteMovieController = require("../../controllers/controller.deleteMovie.
  *                   type: string
  *                   required: true
  *                   description: id của movie            
- *                                 
  *          responses:
  *              200:
- *                  description: Thông báo lấy dữ liệu thành công 
+ *                  description: Thông báo xóa thành công
  *                  content:
  *                      application/json:
  *                          schema:
  *                            type: object
  *                            item:
- *                              $ref:"#/components/schemas/Movie"
  */
  app.delete("/deletemovie/:movieId", (reqs, res) => {
     deleteMovieController(reqs, res)
