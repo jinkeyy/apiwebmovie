@@ -18,6 +18,7 @@ mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
     next();
 });
 
@@ -37,11 +38,11 @@ const gettypemovie = require("./src/routes/movie/route.getTypeMovie")
 const filtermovie = require("./src/routes/movie/route.filterMovie")
 const getnationalmovie = require("./src/routes/movie/route.getNationalMovie");
 const findMovie = require("./src/routes/movie/route.findMovie")
-
+const comment = require("./src/routes/comment/route.comment")
 //// Thềm route vào dưới đây hic
 app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie, findMovie)
 getAllUser(app)
-
+comment(app)
 app.use(fileUpload())
 
 
@@ -67,7 +68,7 @@ const options = {
             }
         ]
     },
-    apis: ["./src/routes/editor.*.js", "./src/routes/user/route*.js", "./src/routes/movie/route*.js"]
+    apis: ["./src/routes/editor.*.js", "./src/routes/user/route*.js", "./src/routes/movie/route*.js",, "./src/routes/comment/route*.js"]
 }
 const specs = swaggerJsDoc(options)
 app.use("/", swaggerUI.serve, swaggerUI.setup(specs))
