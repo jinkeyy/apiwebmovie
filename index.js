@@ -39,10 +39,12 @@ const filtermovie = require("./src/routes/movie/route.filterMovie")
 const getnationalmovie = require("./src/routes/movie/route.getNationalMovie");
 const findMovie = require("./src/routes/movie/route.findMovie")
 const comment = require("./src/routes/comment/route.comment")
+const rate = require("./src/routes/rate/route.rate")
 //// Thềm route vào dưới đây hic
 app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie, findMovie)
 getAllUser(app)
 comment(app)
+rate(app)
 app.use(fileUpload())
 
 
