@@ -70,7 +70,7 @@ const options = {
             }
         ]
     },
-    apis: ["./src/routes/editor.*.js", "./src/routes/user/route*.js", "./src/routes/movie/route*.js",, "./src/routes/comment/route*.js"]
+    apis: ["./src/routes/editor.*.js", "./src/routes/user/route*.js", "./src/routes/movie/route*.js", "./src/routes/comment/route*.js", "./src/routes/rate/route*.js"]
 }
 const specs = swaggerJsDoc(options)
 app.use("/", swaggerUI.serve, swaggerUI.setup(specs))

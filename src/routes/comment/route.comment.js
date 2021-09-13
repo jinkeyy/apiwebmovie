@@ -5,7 +5,7 @@ module.exports = function (app) {
 * @swagger
 * /getcommentbymovie/{movieId}:
 *      get:
-*          summary: Lấy bình luận theo movie
+*          summary: Lấy bình luận theo movieId
 *          tags: [Comment]
 *          parameters:
 *               - in: path
@@ -27,15 +27,15 @@ module.exports = function (app) {
 * @swagger
 * /getcommentbyuser/{userId}:
 *      get:
-*          summary: Lấy bình luận theo movie
+*          summary: Lấy bình luận theo userId
 *          tags: [Comment]
 *          parameters:
 *               - in: path
-*                 name: movie
+*                 name: userId
 *                 schema:
 *                   type: string
 *                   required: true
-*                   description: id của movie
+*                   description: id của user
 *          responses:
 *              200:
 *                  description: Thông báo thành công 
