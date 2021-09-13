@@ -38,7 +38,7 @@ module.exports = function (app) {
     app.route("/createrate").post(rateControlller.create)
     /**
 * @swagger
-* /getratebymovie/{movideId}:
+* /getratebymovie/{movieId}:
 *      get:
 *          summary: Lấy đánh giá theo movie
 *          tags: [Rate]

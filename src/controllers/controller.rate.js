@@ -29,6 +29,7 @@ exports.delete = async (reqs, res) => {
     }
 }
 exports.getratebymovie = async (reqs,res)=>{
+    console.log( reqs.params.movieId );
     try {
         const rate = await Rate.find({ "movie": reqs.params.movieId });
         if(!rate[0]) return res.json(null)
