@@ -1,5 +1,5 @@
 const express = require('express');
-
+const token = require("../../middleware/token")
 const app = express()
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -12,6 +12,8 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  * @swagger
  * /updatemovie/{movieId}:
  *      put:
+ *          security:
+ *              - ApiKeyAuth: []
  *          summary: Update phim 
  *          tags: [Movie]
  *          parameters:
@@ -40,7 +42,14 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                              image:
  *                                  type: string
  *                                  format: binary
+ *                              imagebackground:
+ *                                  type: string
+ *                                  format: binary
  *                              description:
+ *                                  type: string
+ *                              timeduration:
+ *                                  type: string
+ *                              year:
  *                                  type: string
  *                              national:
  *                                  type: string
@@ -62,7 +71,7 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                            item:
  *                              $ref:"#/components/schemas/Movie"
  */
-app.put("/updatemovie/:movieId", (reqs, res) => {
+app.put("/updatemovie/:movieId",token.checkTokenAdmin, (reqs, res) => {
     updateMovieController(reqs, res)
 })
 module.exports = app;

@@ -5,6 +5,8 @@ module.exports = function (app) {
 * @swagger
 * /getcommentbymovie/{movieId}:
 *      get:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: Lấy bình luận theo movieId
 *          tags: [Comment]
 *          parameters:
@@ -22,11 +24,13 @@ module.exports = function (app) {
 *                          schema:
 *                            type: array
 */
-    app.route('/getcommentbymovie/:movieId').get(commentControlller.getbyMovie)
+    app.route('/getcommentbymovie/:movieId').get(token.checkTokenGuest, commentControlller.getbyMovie)
     /**
 * @swagger
 * /getcommentbyuser/{userId}:
 *      get:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: Lấy bình luận theo userId
 *          tags: [Comment]
 *          parameters:
@@ -44,11 +48,13 @@ module.exports = function (app) {
 *                          schema:
 *                            type: array
 */
-    app.route('/getcommentbyuser/:userId').get(commentControlller.getByUser)
+    app.route('/getcommentbyuser/:userId').get(token.checkTokenGuest, commentControlller.getByUser)
     /**
 * @swagger
 * /createcomment:
 *      post:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: Tạo bình luận mới
 *          tags: [Comment]
 *          requestBody:
@@ -78,11 +84,13 @@ module.exports = function (app) {
 *                          schema:
 *                            type: object
 */
-    app.route("/createcomment").post(commentControlller.create)
+    app.route("/createcomment").post(token.checkTokenGuest, commentControlller.create)
     /**
 * @swagger
 * /deletecomment/{commentId}:
 *      delete:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: xóa bình luận theo id comment
 *          tags: [Comment]
 *          parameters:
@@ -114,11 +122,13 @@ module.exports = function (app) {
 *                                   type: string
 *                                   description: error
 */
-    app.route("/deletecomment/:commentId").delete(commentControlller.delete)
+    app.route("/deletecomment/:commentId").delete(token.checkTokenGuest, commentControlller.delete)
     /**
  * @swagger
  * /updatecomment/{commmentId}:
  *      put:
+ *          security:
+ *              - ApiKeyAuth: []
  *          summary: cập nhật bình luận theo id bình luận
  *          tags: [Comment]
  *          parameters:
@@ -169,5 +179,5 @@ module.exports = function (app) {
  *                                   type: string
  *                                   description: error
  */
-    app.route('/updatecomment/:commentId').put(commentControlller.update)
+    app.route('/updatecomment/:commentId').put(token.checkTokenGuest, commentControlller.update)
 }

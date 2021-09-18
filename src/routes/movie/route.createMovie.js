@@ -1,5 +1,5 @@
 const express = require('express');
-
+const token = require("../../middleware/token")
 const app = express()
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -68,6 +68,8 @@ const createMovieController = require("../../controllers/controller.createMovie.
  * @swagger
  * /createmovie:
  *      post:
+ *          security:
+ *              - ApiKeyAuth: []
  *          tags: [Movie]
  *          summary: Tạo phim mới 
  *          requestBody:
@@ -100,8 +102,6 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                                  type: string
  *                              year:
  *                                  type: string
- *                              createdate:
- *                                  type: Date
  *                              national:
  *                                  type: string
  *                              typemovie:
@@ -124,7 +124,7 @@ const createMovieController = require("../../controllers/controller.createMovie.
  */
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
-app.post("/createmovie", (reqs, res) => {
+app.post("/createmovie",token.checkTokenAdmin, (reqs, res) => {
     createMovieController(reqs, res)
 })
 module.exports = app;

@@ -3,7 +3,7 @@ const express = require("express")
 const app = express()
 const bcrypt = require("bcryptjs")
 registerController = async (reqs,res)=>{
-    if(reqs.body.username && reqs.body.email && reqs.body.email ){
+    if(reqs.body.username && reqs.body.email && reqs.body.password ){
         const salt = await bcrypt.genSalt(10);
         const hashPass = await bcrypt.hash(reqs.body.password,salt)
         const newUser = new User();

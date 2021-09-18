@@ -3,11 +3,15 @@ const uploadFile = require("../modules/uploadfile")
 
 createMovieController = async (reqs, res) => {
     const type = reqs.body.typemovie.split(",")
-    const actors = reqs.body.actors.split(",")
+    let actors = []
+    if (reqs.body.actors) {
+        actors = reqs.body.actors.split(",")
+    }
     if (!reqs.files) return res.status(400).send({ "error": "Không tìm thấy file ảnh" })
     if (!reqs.files.image) return res.status(400).send({ "error": "Không tìm thấy file ảnh" })
     const imagelink = await uploadFile(reqs.files.image)
     const imagebackgroundlink = await uploadFile(reqs.files.imagebackground)
+    uploadFile(reqs.files.image)
     if (reqs.body.moviename && reqs.body.movielink) {
         const newMovie = new Movie();
         newMovie.moviename = reqs.body.moviename

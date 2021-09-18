@@ -1,5 +1,5 @@
 const express = require('express');
-
+const token = require("../../middleware/token")
 const app = express()
 const bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -12,6 +12,8 @@ const deleteMovieController = require("../../controllers/controller.deleteMovie.
  * @swagger
  * /deletemovie/{movieId}:
  *      delete:
+ *          security:
+ *              - ApiKeyAuth: []
  *          summary: xóa một phim 
  *          tags: [Movie] 
  *          parameters:
@@ -30,7 +32,7 @@ const deleteMovieController = require("../../controllers/controller.deleteMovie.
  *                            type: object
  *                            item:
  */
- app.delete("/deletemovie/:movieId", (reqs, res) => {
+ app.delete("/deletemovie/:movieId",token.checkTokenAdmin, (reqs, res) => {
     deleteMovieController(reqs, res)
 })
 module.exports = app;

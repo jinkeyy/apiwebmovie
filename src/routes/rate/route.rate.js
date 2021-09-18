@@ -5,6 +5,8 @@ module.exports = function (app) {
 * @swagger
 * /createrate:
 *      post:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: Tạo đánh giá mới
 *          tags: [Rate]
 *          requestBody:
@@ -35,7 +37,7 @@ module.exports = function (app) {
 *                          schema:
 *                            type: object
 */
-    app.route("/createrate").post(rateControlller.create)
+    app.route("/createrate").post(token.checkTokenGuest, rateControlller.create)
     /**
 * @swagger
 * /getratebymovie/{movieId}:
@@ -62,6 +64,8 @@ module.exports = function (app) {
 * @swagger
 * /deleterate/{rateId}:
 *      delete:
+*          security:
+*              - ApiKeyAuth: []
 *          summary: xóa bình luận theo id rate
 *          tags: [Rate]
 *          parameters:
@@ -93,5 +97,5 @@ module.exports = function (app) {
 *                                   type: string
 *                                   description: error
 */
-    app.route("/deleterate/:rateId").delete(rateControlller.delete)
+    app.route("/deleterate/:rateId").delete(token.checkTokenGuest, rateControlller.delete)
 }
