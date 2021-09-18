@@ -34,9 +34,21 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                  imagelink:
  *                      type: string
  *                      description: đường dẫn ảnh
+ *                  imagebackgroundlink:
+ *                      type: string
+ *                      description: đường dẫn ảnh bìa
  *                  description:
  *                      type: string
  *                      description: mô tả phim 
+ *                  timeduration:
+ *                      type: string
+ *                      description: thời lượng phim
+ *                  year:
+ *                      type: string
+ *                      description: năm phát hành
+ *                  createdate:
+ *                      type: Date
+ *                      description: ngày cập nhật
  *                  national:
  *                      type: string
  *                      description: quốc gia
@@ -68,6 +80,7 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                              -moviename
  *                              -movielink
  *                              -image
+ *                              -imagebackground
  *                          properties:
  *                              moviename:
  *                                  type: string
@@ -78,8 +91,17 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                              image:
  *                                  type: string
  *                                  format: binary
+ *                              imagebackground:
+ *                                  type: string
+ *                                  format: binary
  *                              description:
  *                                  type: string
+ *                              timeduration:
+ *                                  type: string
+ *                              year:
+ *                                  type: string
+ *                              createdate:
+ *                                  type: Date
  *                              national:
  *                                  type: string
  *                              typemovie:

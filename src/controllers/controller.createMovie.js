@@ -7,13 +7,18 @@ createMovieController = async (reqs, res) => {
     if (!reqs.files) return res.status(400).send({ "error": "Không tìm thấy file ảnh" })
     if (!reqs.files.image) return res.status(400).send({ "error": "Không tìm thấy file ảnh" })
     const imagelink = await uploadFile(reqs.files.image)
+    const imagebackgroundlink = await uploadFile(reqs.files.imagebackground)
     if (reqs.body.moviename && reqs.body.movielink) {
         const newMovie = new Movie();
         newMovie.moviename = reqs.body.moviename
         newMovie.movielink = reqs.body.movielink
         newMovie.imagelink = imagelink
+        newMovie.imagebackgroundlink = imagebackgroundlink
         newMovie.trailerlink = reqs.body.trailerlink
         newMovie.description = reqs.body.description
+        newMovie.timeduration = reqs.body.timeduration
+        newMovie.year = reqs.body.year
+        newMovie.createdate = (new Date()).getTime();
         newMovie.actors = actors
         newMovie.national = reqs.body.national
         newMovie.typemovie = type

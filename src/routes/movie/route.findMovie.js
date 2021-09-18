@@ -10,7 +10,7 @@ module.exports = app;
  * @swagger
  * /findmovie:
  *      get:
- *          summary: tìm kiếm  phim theo keywork
+ *          summary: tìm kiếm phim theo keywork
  *          tags: [Movie] 
  *          parameters:
  *               - in: query
