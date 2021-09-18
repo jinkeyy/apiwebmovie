@@ -1,6 +1,6 @@
 const User = require("../models/models.user")
 const bcrypt = require("bcryptjs")
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken") 
 loginController = async (reqs,res)=>{
     const userLogin = await User.findOne({email: reqs.body.email}).select('password');
     if(!userLogin) return res.status(400).send({"notification":"email does not exist"})
