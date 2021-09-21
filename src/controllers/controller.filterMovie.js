@@ -3,11 +3,13 @@ const express = require("express")
 const app = express()
 
 filterMovieController = async (reqs, res) => {
-    console.log(123);
     try {
         let nationalMovie = reqs.query.national == undefined ? "" : reqs.query.national;
         let typeMovie = reqs.query.typemovie == undefined ? "" : reqs.query.typemovie;
         let yearMovie = reqs.query.year == undefined ? "" : reqs.query.year;
+        const pageIndex = parseInt(reqs.query.pageIndex);
+        const pageSize = parseInt(reqs.query.pageSize);
+        const skipIndex = (pageIndex - 1 ) * pageSize ;
         let movies = [];
         if (nationalMovie === "") {
             nationalMovie = { $exists: true }
@@ -22,14 +24,14 @@ filterMovieController = async (reqs, res) => {
             movies = await Movie.find({
                 national: nationalMovie,
                 typemovie: typeMovie,
-                // year: yearMovie;
-            });
+                year: yearMovie,
+            }).limit(pageSize).skip(skipIndex).exec();
         } else {
             movies = await Movie.find({
                 national: nationalMovie,
                 typemovie: { $in: [typeMovie] },
-                // year: yearMovie;
-            });
+                year: yearMovie,
+            }).limit(pageSize).skip(skipIndex).exec();
         }
         if (movies == null) {
             res.status(204).send();

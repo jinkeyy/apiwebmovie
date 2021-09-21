@@ -16,8 +16,10 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *              type: object
  *              required:
  *                  -moviename
+ *                  -movienamevn
  *                  -movielink
  *                  -imagelink
+ *                  -imagebackgroundlink
  *              properties:
  *                  id:
  *                      type: string
@@ -25,6 +27,9 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                  moviename:
  *                      type: string
  *                      description: tên phim
+ *                  movienamevn:
+ *                      type: string
+ *                      description: tên phim bằng Tiếng Việt
  *                  trailerlink:
  *                      type: string
  *                      description: đường dẫn trailer
@@ -80,11 +85,14 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                          type: object
  *                          required:
  *                              -moviename
+ *                              -movienamevn
  *                              -movielink
  *                              -image
  *                              -imagebackground
  *                          properties:
  *                              moviename:
+ *                                  type: string
+ *                              movienamevn:
  *                                  type: string
  *                              trailerlink:
  *                                  type: string
