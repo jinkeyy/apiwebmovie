@@ -35,6 +35,8 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                          properties:
  *                              moviename:
  *                                  type: string
+ *                              movienamevn:
+ *                                  type: string
  *                              trailerlink:
  *                                  type: string
  *                              movielink:

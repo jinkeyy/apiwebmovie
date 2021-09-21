@@ -11,6 +11,7 @@ updateMovieController = async (reqs,res)=>{
     if(reqs.body.moviename && reqs.body.movielink){
         const newMovie = {};
         newMovie.moviename = reqs.body.moviename
+        newMovie.movienamevn = reqs.body.movienamevn
         newMovie.movielink = reqs.body.movielink
         newMovie.trailerlink = reqs.body.trailerlink
         newMovie.description = reqs.body.description

@@ -15,6 +15,7 @@ createMovieController = async (reqs, res) => {
     if (reqs.body.moviename && reqs.body.movielink) {
         const newMovie = new Movie();
         newMovie.moviename = reqs.body.moviename
+        newMovie.movienamevn = reqs.body.movienamevn
         newMovie.movielink = reqs.body.movielink
         newMovie.imagelink = imagelink
         newMovie.imagebackgroundlink = imagebackgroundlink

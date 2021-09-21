@@ -16,7 +16,6 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *              type: object
  *              required:
  *                  -moviename
- *                  -movienamevn
  *                  -movielink
  *                  -imagelink
  *                  -imagebackgroundlink
@@ -85,7 +84,6 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                          type: object
  *                          required:
  *                              -moviename
- *                              -movienamevn
  *                              -movielink
  *                              -image
  *                              -imagebackground
