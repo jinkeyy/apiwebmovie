@@ -17,7 +17,7 @@ registerController = async (reqs,res)=>{
             res.status(400).send(err);
         }
     }else{
-        res.status(400).send("lỗi "+reqs.body.email );
+        res.status(400).send("lỗi "+ reqs.body.email );
     }
 
 }

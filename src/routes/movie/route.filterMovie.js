@@ -29,7 +29,17 @@ const filterMovieController = require("../../controllers/controller.filterMovie.
  *                 name: year
  *                 schema:
  *                   type: string
- *                   description: keywork          
+ *                   description: keywork 
+ *               - in: query
+ *                 name: pageIndex
+ *                 schema:
+ *                   type: String
+ *                   description: keywork 
+ *               - in: query
+ *                 name: pageSize
+ *                 schema:
+ *                   type: string
+ *                   description: keywork 
  *                                 
  *          responses:
  *              200:
