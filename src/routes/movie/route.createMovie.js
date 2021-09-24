@@ -56,6 +56,9 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                  national:
  *                      type: string
  *                      description: quốc gia
+ *                  director:
+ *                      type: string
+ *                      description: Đạo Diễn
  *                  typemovie:
  *                      type: array
  *                      items:
@@ -130,7 +133,7 @@ const createMovieController = require("../../controllers/controller.createMovie.
  */
 const fileUpload = require('express-fileupload')
 app.use(fileUpload())
-app.post("/createmovie",token.checkTokenAdmin, (reqs, res) => {
+app.post("/createmovie", token.checkTokenAdmin, (reqs, res) => {
     createMovieController(reqs, res)
 })
 module.exports = app;

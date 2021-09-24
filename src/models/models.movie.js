@@ -9,20 +9,19 @@ const movieSchema = mongoose.Schema({
     description: { type: String },
     timeduration: { type: String },
     year: { type: String },
+    director : {type: String },
     createdate: { type: String },
     actors: { type: Array },
     national: {
         type: String,
-        enum: ['Châu Á', 'Mỹ', 'Châu Âu', 'Trung Quốc', 'Nhật Bản', 'Việt Nam', 'Khác'],
+        enum: ['Mỹ', 'Hàn Quốc', 'Anh', 'Pháp', 'Canada', 'Hồng Kông', 'Nhật Bản', 'Trung Quốc', 'Đức', 'Úc', 'Ý', 'Thụy Điển', 'Bỉ', 'Tây Ban Nha', 'Việt Nam', 'Châu Á', 'Châu Âu', 'Philippines', 'Nga', 'Tây Ban Nha', 'Đan Mạch', 'Singapore', 'Hà Lan', 'Khác'],
         default: "Khác"
     },
     typemovie: {
         type: [String],
-        enum: ['Hài', 'Lãng Mạn', 'Hành Động', 'Kinh Dị', 'Gia Đình', 'Hoạt Hình', 'Khác'],
+        enum: ['Âm Nhạc', 'Bí Ẩn', 'Chiến Tranh', 'Chính Kịch', 'Gia Đình', 'Giật Gân', 'Hài', 'Hành Động', 'Hoạt Hình', 'Kinh Dị', 'Kỳ Ảo', 'Lãng Mạn', 'Lịch Sử', 'Nói Chuyện', 'Tài Liệu', 'Thực Tế', 'Tội Phạm', 'Trẻ Em', 'Viễn Tưởng', 'Khác'],
         default: ["Khác"]
     },
-
-
 })
 
 module.exports = mongoose.model('movie', movieSchema)
