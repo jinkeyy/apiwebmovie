@@ -109,6 +109,8 @@ const createMovieController = require("../../controllers/controller.createMovie.
  *                                  type: string
  *                              timeduration:
  *                                  type: string
+ *                              director:
+ *                                  type: string
  *                              year:
  *                                  type: string
  *                              national:
