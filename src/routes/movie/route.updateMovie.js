@@ -55,6 +55,8 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                                  type: string
  *                              national:
  *                                  type: string
+ *                              director:
+ *                                  type: string
  *                              typemovie:
  *                                  type: array
  *                                  items: 
@@ -73,7 +75,7 @@ const updateMovieController = require("../../controllers/controller.updateMovie.
  *                            item:
  *                              $ref:"#/components/schemas/Movie"
  */
-app.put("/updatemovie/:movieId",token.checkTokenAdmin, (reqs, res) => {
+app.put("/updatemovie/:movieId", token.checkTokenAdmin, (reqs, res) => {
     updateMovieController(reqs, res)
 })
 module.exports = app;
