@@ -98,4 +98,26 @@ module.exports = function (app) {
 *                                   description: error
 */
     app.route("/deleterate/:rateId").delete(token.checkTokenGuest, rateControlller.delete)
+    /**
+* @swagger
+* /getrateavgbymovie/{movieId}:
+*      get:
+*          summary: Lấy đánh giá trung bình theo movie
+*          tags: [Rate]
+*          parameters:
+*               - in: path
+*                 name: movieId
+*                 schema:
+*                   type: string
+*                   required: true
+*                   description: id của movie
+*          responses:
+*              200:
+*                  description: Thông báo thành công 
+*                  content:
+*                      application/json:
+*                          schema:
+*                            type: json
+*/
+    app.route("/getrateavgbymovie/:movieId").get(rateControlller.getRateAvg)
 }

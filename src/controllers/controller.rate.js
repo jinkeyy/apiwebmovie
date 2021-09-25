@@ -28,12 +28,29 @@ exports.delete = async (reqs, res) => {
         res.status(400).json({ "notification": "error" });
     }
 }
-exports.getratebymovie = async (reqs,res)=>{
-    console.log( reqs.params.movieId );
+exports.getratebymovie = async (reqs, res) => {
     try {
         const rate = await Rate.find({ "movie": reqs.params.movieId });
-        if(!rate[0]) return res.json(null)
+        if (!rate[0]) return res.json(null)
         res.json(rate);
+    } catch (err) {
+        res.status(400).send(err);
+    }
+}
+exports.getRateAvg = async (reqs, res) => {
+    try {
+        const rate = await Rate.find({ "movie": reqs.params.movieId });
+        if (!rate[0]) {
+            return res.json(null)
+        } else {
+            const sum = rate.reduce((previousValue, currentValue) => {
+                return previousValue.rate + currentValue.rate
+            })
+            res.json({ 
+                avg:sum/rate.length
+            });
+        }
+
     } catch (err) {
         res.status(400).send(err);
     }
