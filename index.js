@@ -4,24 +4,24 @@ const bodyParser = require("body-parser")
 const bcrypt = require("bcryptjs")
 const mongoose = require('mongoose');
 const config = require('./src/config.json');
-// const fsRoutes = require("fs-routes")
 const fileUpload = require('express-fileupload')
 const url = require('url');
 const swaggerUI = require("swagger-ui-express")
 const swaggerJsDoc = require("swagger-jsdoc")
+const cors = require('cors')
 
 app.use(express.static("public"));
 mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 
 
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    next();
-});
-
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     next();
+// });
+app.use(cors())
 const port = config.App.localhost
 app.listen(process.env.PORT || port, () => {
     console.log("Cổng " + port)
