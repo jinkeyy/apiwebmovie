@@ -22,6 +22,7 @@ mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 //     next();
 // });
 app.use(cors())
+app.options('*', cors());
 const port = config.App.localhost
 app.listen(process.env.PORT || port, () => {
     console.log("Cổng " + port)
