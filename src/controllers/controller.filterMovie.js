@@ -49,6 +49,7 @@ filterMovieController = async (reqs, res) => {
         } else {
             res.json({
                 "totalMovie": totalMovie.length,
+                "totalPage" : Math.floor((totalMovie.length)/pageSize) + 1,
                 "movies": movies,
             });
         }
