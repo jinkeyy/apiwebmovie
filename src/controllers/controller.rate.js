@@ -10,7 +10,8 @@ exports.create = async (reqs, res) => {
         await rate.save()
         res.status(200).send({ "message": "Thêm dánh giá thành công" });
     } catch (err) {
-        res.status(500).send(err);
+        err.msg = "Bạn có thể đã bình luận"
+        res.status(400).json(err);
     }
 
 }
@@ -40,17 +41,19 @@ exports.getratebymovie = async (reqs, res) => {
 exports.getRateAvg = async (reqs, res) => {
     try {
         const rate = await Rate.find({ "movie": reqs.params.movieId });
-        if (!rate[0]) {
-            return res.json(null)
-        } else {
-            const sum = rate.reduce((previousValue, currentValue) => {
+        if (rate[0]) {
+            let sum = rate.reduce((previousValue, currentValue) => {
                 return previousValue.rate + currentValue.rate
             })
+            if(rate.length == 1){
+                sum = rate[0].rate
+            } 
             res.json({ 
                 avg:sum/rate.length
             });
+        } else if(!rate[0]) {
+            return res.json(null)
         }
-
     } catch (err) {
         res.status(400).send(err);
     }
