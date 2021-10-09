@@ -11,6 +11,7 @@ filterMovieController = async (reqs, res) => {
         const pageSize = parseInt(reqs.query.pageSize);
         const skipIndex = (pageIndex - 1 ) * pageSize ;
         let movies = [];
+        let totalMovie = "";
         if (nationalMovie === "") {
             nationalMovie = { $exists: true }
         }
@@ -21,12 +22,22 @@ filterMovieController = async (reqs, res) => {
             typeMovie = { $exists: true }
         }
         if (typeMovie.$exists) {
+            totalMovie = await Movie.find({
+                national: nationalMovie,
+                typemovie: typeMovie,
+                year: yearMovie,
+            });
             movies = await Movie.find({
                 national: nationalMovie,
                 typemovie: typeMovie,
                 year: yearMovie,
             }).limit(pageSize).skip(skipIndex).exec();
         } else {
+            totalMovie = await Movie.find({
+                national: nationalMovie,
+                typemovie: typeMovie,
+                year: yearMovie,
+            });
             movies = await Movie.find({
                 national: nationalMovie,
                 typemovie: { $in: [typeMovie] },
@@ -36,7 +47,11 @@ filterMovieController = async (reqs, res) => {
         if (movies == null) {
             res.status(204).send();
         } else {
-            res.json(movies);
+            res.json({
+                "totalMovie": totalMovie.length,
+                "totalPage" : Math.floor((totalMovie.length)/pageSize) + 1,
+                "movies": movies,
+            });
         }
     } catch (err) {
         res.status(500).send(err);
