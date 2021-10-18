@@ -8,6 +8,7 @@ registerController = async (reqs, res) => {
         const hashPass = await bcrypt.hash(reqs.body.password, salt)
         const newUser = new User();
         newUser.username = reqs.body.username
+        newUser.dob = reqs.body.dob
         newUser.email = reqs.body.email
         newUser.password = hashPass
         try {
