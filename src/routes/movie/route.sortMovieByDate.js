@@ -25,6 +25,6 @@ const sortMovieByDateController = require("../../controllers/controller.sortMovi
  *                              $ref:"#/components/schemas/Movie"
  */
 app.get("/sortmovie", (reqs, res) => {
-    getAllMovieController(reqs, res)
+    sortMovieByDateController(reqs, res)
 })
 module.exports = app;
