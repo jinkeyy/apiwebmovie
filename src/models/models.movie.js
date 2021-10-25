@@ -22,6 +22,10 @@ const movieSchema = mongoose.Schema({
         enum: ['Âm Nhạc', 'Bí Ẩn', 'Chiến Tranh', 'Chính Kịch', 'Gia Đình', 'Giật Gân', 'Hài', 'Hành Động', 'Hoạt Hình', 'Kinh Dị', 'Kỳ Ảo', 'Lãng Mạn', 'Lịch Sử', 'Nói Chuyện', 'Tài Liệu', 'Thực Tế', 'Tội Phạm', 'Trẻ Em', 'Viễn Tưởng', 'Khác'],
         default: ["Khác"]
     },
+    rateage:{ 
+        type: String,
+        default: "G"
+    }
 })
 
 module.exports = mongoose.model('movie', movieSchema)

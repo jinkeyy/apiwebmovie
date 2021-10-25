@@ -17,6 +17,7 @@ updateMovieController = async (reqs,res)=>{
         newMovie.description = reqs.body.description
         newMovie.director = reqs.body.director
         newMovie.actors = actors
+        newMovie.rateage = reqs.body.rateage
         newMovie.national = reqs.body.national
         newMovie.typemovie = type
         newMovie.timeduration = reqs.body.timeduration

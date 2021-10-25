@@ -23,6 +23,7 @@ createMovieController = async (reqs, res) => {
         newMovie.description = reqs.body.description
         newMovie.timeduration = reqs.body.timeduration
         newMovie.year = reqs.body.year
+        newMovie.rateage = reqs.body.rateage
         newMovie.director = reqs.body.director
         newMovie.createdate = (new Date()).getTime();
         newMovie.actors = actors
