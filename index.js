@@ -40,8 +40,10 @@ const getnationalmovie = require("./src/routes/movie/route.getNationalMovie");
 const findMovie = require("./src/routes/movie/route.findMovie")
 const comment = require("./src/routes/comment/route.comment")
 const rate = require("./src/routes/rate/route.rate")
+const searchmovie = require("./src/routes/movie/route.searchMovie")
+const sortmovie = require("./src/routes/movie/route.sortMovieByDate")
 //// Thềm route vào dưới đây hic
-app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie, findMovie)
+app.use(login, register, getallmovie, createmovie, getmovie, updatemovie, deletemovie, gettypemovie, filtermovie, getnationalmovie, findMovie, searchmovie, sortmovie)
 getAllUser(app)
 comment(app)
 rate(app)
