@@ -21,7 +21,9 @@ mongoose.connect(config.MongoDb.connectionString, { useNewUrlParser: true })
 //     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
 //     next();
 // });
-app.use(cors())
+app.use(cors({
+    "origin": "*"
+}))
 const port = config.App.localhost
 app.listen(process.env.PORT || port, () => {
     console.log("Cổng " + port)
