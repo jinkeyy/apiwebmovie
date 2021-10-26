@@ -42,7 +42,7 @@ exports.getRateAvg = async (reqs, res) => {
     try {
         const rate = await Rate.find({ "movie": reqs.params.movieId });
         let numOr0 = n => isNaN(n) ? 0 : n
-        if (rate[0].rate) {
+        if (rate[0]) {
             let sum = rate.reduce((a,b)=> {
                 if(a.rate) return a.rate + b.rate
                 if(!a.rate) return a + b.rate
@@ -54,7 +54,7 @@ exports.getRateAvg = async (reqs, res) => {
                 avg: sum / rate.length
             });
         } else if (rate.length == 0) {
-            return res.json(null)
+            return res.json({avg: 0})
         }
     } catch (err) {
         res.status(400).send(err);
