@@ -5,10 +5,16 @@ exports.create = async (reqs, res) => {
     if (body.rate == "") return res.status(400).json({ "error": "chưa điền rate" })
     if (!body.user) return res.status(400).json({ "error": "không có user id" })
     if (!body.movie) return res.status(400).json({ "error": "không có movie id" })
+
     const rate = new Rate(body)
     try {
-        await rate.save()
-        res.status(200).send({ "message": "Thêm dánh giá thành công" });
+        const rateCheck = await Rate.find({$and:[{user:body.user},{movie:body.movie}]})
+        if(rateCheck.length > 0){
+            res.status(400).json({ "error": "Tài khoản đã bình luận phim này rồi" })
+        }else{
+            await rate.save()
+            res.status(200).send({ "message": "Thêm dánh giá thành công" });
+        }
     } catch (err) {
         err.msg = "Bạn có thể đã bình luận"
         res.status(400).json(err);
